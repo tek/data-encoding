@@ -1,0 +1,28 @@
+load("//:bzl/library.bzl", "dep_lib")
+
+dep_lib(
+    name = "lib-data-encoding",
+    modules = [
+      ("binary_description", ["encoding", "binary_schema"]),
+      ("binary_error", ["binary_error_types", "encoding"]),
+      ("binary_error_types", []),
+      ("binary_length", ["encoding"]),
+      ("binary_reader", ["encoding", "tzEndian"]),
+      ("binary_schema", ["binary_size", "encoding"]),
+      ("binary_size", []),
+      ("binary_slicer", ["encoding", "tzEndian"]),
+      ("binary_stream", []),
+      ("binary_stream_reader", ["binary_stream", "binary_error_types", "encoding", "tzEndian"]),
+      ("binary_writer", ["encoding", "tzEndian", "binary_length"]),
+      ("bson", ["encoding", "json"]),
+      ("data_encoding", ["encoding", "binary_stream", "json", "binary_reader", "binary_writer", "with_version", "registration", "json_stream", "bson", "binary_error", "binary_stream_reader"]),
+      ("encoding", ["binary_size", "uint_option", "binary_error_types"]),
+      ("json", ["encoding"]),
+      ("json_stream", []),
+      ("registration", ["binary_schema", "json", "binary_slicer", "binary_reader", "binary_description", "binary_writer"]),
+      ("tzEndian", []),
+      ("uint_option", []),
+      ("with_version", ["encoding"]),
+    ],
+    deps_opam = ["json-data-encoding", "json-data-encoding-bson", "zarith", "ezjsonm"],
+)

@@ -1,3 +1,10 @@
-/_build
 *.install
+.*.swp
 .merlin
+_build/
+_opam/
+/a.out
+/bazel-bin
+/bazel-out
+/bazel-testlogs
+/bazel-data-encoding-build

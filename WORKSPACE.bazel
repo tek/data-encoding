@@ -1,0 +1,27 @@
+workspace(name = "data-encoding")
+
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "bazel_skylib",
+    urls = [
+        "https://github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/bazel-skylib/releases/download/1.0.3/bazel-skylib-1.0.3.tar.gz",
+    ],
+    sha256 = "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
+)
+
+http_archive(
+    name = "obazl_rules_ocaml",
+    strip_prefix = "rules_ocaml-bbcc7bfe3787038b2207e07a1e795fcab32dc676",
+    urls = [
+        "https://github.com/obazl/rules_ocaml/archive/bbcc7bfe3787038b2207e07a1e795fcab32dc676.tar.gz"
+    ],
+    sha256 = "71cf985899e88eb3c8ebf64b2853b6f667ac50bd887ccbd421c32cc8b6f6800b"
+)
+
+load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
+
+load("//:bzl/opam.bzl", "opam")
+ocaml_configure(opam = opam, build = "1")

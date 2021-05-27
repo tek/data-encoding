@@ -10,3 +10,4 @@ RUN apt-get install -y libgmp-dev
 USER opam
 RUN opam install ocamlfind
 RUN opam install json-data-encoding json-data-encoding-bson zarith ezjsonm
+RUN opam install alcotest crowbar

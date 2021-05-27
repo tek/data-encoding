@@ -1,0 +1,51 @@
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ocaml_module",
+    "ocaml_test",
+)
+load("//:bzl/library.bzl", "module_set")
+
+module_set(
+    name = "lib-test",
+    modules = [
+        ("generators", []),
+        ("helpers", []),
+        ("invalid_encoding", ["helpers"]),
+        ("mu", []),
+        ("randomized", ["success"]),
+        ("read_failure", ["helpers", "types"]),
+        ("registrationed", []),
+        ("slice_test", []),
+        ("success", ["helpers", "types"]),
+        ("test", [
+            "success",
+            "invalid_encoding",
+            "read_failure",
+            "write_failure",
+            "randomized",
+            "versioned",
+            "registrationed",
+            "mu",
+            "slice_test",
+        ]),
+        ("test_classifiers", ["generators"]),
+        ("test_generated", ["generators"]),
+        ("test_json_stream", []),
+        ("test_json_stream_sizes", []),
+        ("test_legacy_compatibility", ["generators"]),
+        ("test_sub_string", []),
+        ("types", []),
+        ("versioned", ["helpers"]),
+        ("write_failure", ["helpers", "types"]),
+    ],
+    deps_opam = ["alcotest", "crowbar"],
+    deps = ["//src:#Data_encoding"],
+)
+
+ocaml_test(name = "main", main = "test", deps = ["lib-test"])
+ocaml_test(name = "classifiers", main = "test_classifiers", deps = ["lib-test"])
+ocaml_test(name = "generated", main = "test_generated", deps = ["lib-test"])
+ocaml_test(name = "json_stream", main = "test_json_stream", deps = ["lib-test"])
+ocaml_test(name = "json_stream_sizes", main = "test_json_stream_sizes", deps = ["lib-test"])
+ocaml_test(name = "legacy_compatibility", main = "test_legacy_compatibility", deps = ["lib-test"])
+ocaml_test(name = "sub_string", main = "test_sub_string", deps = ["lib-test"])

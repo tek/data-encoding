@@ -24,4 +24,4 @@ http_archive(
 load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
 
 load("//:bzl/opam.bzl", "opam")
-ocaml_configure(opam = opam, build = "1")
+ocaml_configure(opam = opam, build = "4.12")

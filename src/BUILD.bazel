@@ -1,7 +1,7 @@
-load("//:bzl/library.bzl", "dep_lib")
+load("//:bzl/library.bzl", "simple_lib")
 
-dep_lib(
-    name = "lib-data-encoding",
+simple_lib(
+    name = "#Data_encoding",
     modules = [
       ("binary_description", ["encoding", "binary_schema"]),
       ("binary_error", ["binary_error_types", "encoding"]),
@@ -25,4 +25,5 @@ dep_lib(
       ("with_version", ["encoding"]),
     ],
     deps_opam = ["json-data-encoding", "json-data-encoding-bson", "zarith", "ezjsonm"],
+    ns = True,
 )
